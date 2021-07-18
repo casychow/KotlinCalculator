@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity() {
         button9.setOnClickListener(listener)
         buttonDot.setOnClickListener(listener)
         */
-        
+
         //Used listOf instead of arrayOf because list is immutable whereas an array is
         val valButtons = listOf(button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonDot)
         for (b in valButtons) b.setOnClickListener(listener)
@@ -93,6 +93,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun performOperand(value: String, operation: String) {
         displayOperation.text = operation
+        
     }
 
 }
