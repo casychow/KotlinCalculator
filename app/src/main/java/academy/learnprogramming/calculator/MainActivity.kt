@@ -92,8 +92,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performOperand(value: String, operation: String) {
-        displayOperation.text = operation
-        
+        if (operand1 == null) {
+            //if we don't have a first number to do math on (ie. A), use the previous number
+            //A [] B = C
+            operand1 = value.toDouble()
+        } else {
+            //Otherwise, we do have A so we just need B, which will be the newNum just inserted
+                operand2 = value.toDouble()
+
+            if (pendingOperation == "=") {
+                //update next operation
+                pendingOperation = operation
+            }
+
+            when (operation) {
+                "=" -> operand1 = operand2
+                "/" -> if (operand2 == 0.0) {
+                            operand1 = Double.NaN
+                        } else {
+                            operand1 = operand1!! / operand2
+                        }
+                "*" -> operand1 = operand1!! * operand2
+                "-" -> operand1 = operand1!! - operand2
+                "+" -> operand1 = operand1!! + operand2
+            }
+        }
+        result.setText(operand1.toString())
+        newNumber.setText("")
     }
 
 }
